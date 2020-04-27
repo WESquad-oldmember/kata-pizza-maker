@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kata-fizzbuzz": {
+    "kata-pizza-maker": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kata-fizzbuzz",
+            "outputPath": "dist/kata-pizza-maker",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kata-fizzbuzz:build"
+            "browserTarget": "kata-pizza-maker:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kata-fizzbuzz:build:production"
+              "browserTarget": "kata-pizza-maker:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kata-fizzbuzz:build"
+            "browserTarget": "kata-pizza-maker:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kata-fizzbuzz:serve"
+            "devServerTarget": "kata-pizza-maker:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "kata-fizzbuzz:serve:production"
+              "devServerTarget": "kata-pizza-maker:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "kata-fizzbuzz"
+  "defaultProject": "kata-pizza-maker"
 }
