@@ -1,6 +1,5 @@
-import { PizzaMakerComponent } from './pizza-maker.component';
 import { TestBed } from '@angular/core/testing';
-import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
+import { PizzaMakerComponent } from './pizza-maker.component';
 
 describe('PizzaMakerComponent', () => {
   let componentUnderTest: PizzaMakerComponent;
@@ -63,6 +62,26 @@ describe('PizzaMakerComponent', () => {
       Then(() => {
         expect(actualResult).toBeFalsy();
       });
+    });
+
+    describe('GIVEN pasta is missing THEN no pizza is created', () => {
+      const name = 'fake name';
+      let pasta = '';
+      const toppings = ['some', 'fake', 'toppings'];
+
+      describe('GIVEN pasta is null/empty THEN no pizza for you', () => {
+        When(() => {
+          pasta = null; // could have let it be = ''
+        });
+
+        Given(() => {
+          actualResult = componentUnderTest.makePizza(name, pasta, toppings);
+        });
+        Then(() => {
+          expect(actualResult).toBeFalsy();
+        });
+      });
+
     });
   });
 });
