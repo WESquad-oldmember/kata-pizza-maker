@@ -1,5 +1,5 @@
 export enum PizzaSize {
-    SMALL,
-    MEDIUM,
-    LARGE
+    SMALL = 1,
+    MEDIUM = 2,
+    LARGE = 3
 };

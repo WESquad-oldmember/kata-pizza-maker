@@ -70,7 +70,7 @@ describe('PizzaMakerComponent', () => {
       let pasta = null;
       const toppings = ['some', 'fake', 'toppings'];
 
-      describe('GIVEN pasta is null/empty THEN no pizza for you', () => {
+      describe('GIVEN pasta is null THEN no pizza for you', () => {
         When(() => {
           pasta = null; // could have let it be = ''
         });

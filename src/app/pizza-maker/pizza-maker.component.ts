@@ -17,7 +17,7 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   makePizza(name: string, pasta: PizzaSize, toppings: string[]): any {
-    if (!pasta) {
+    if (pasta == null) {
       return;
     }
 
