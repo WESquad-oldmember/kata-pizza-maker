@@ -1,3 +1,7 @@
 language: node_js
 node_js:
 - lts/*
+
+script:
+  - ng lint
+  - ng test --watch=false --browsers ChromeHeadless
