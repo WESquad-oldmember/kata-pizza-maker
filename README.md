@@ -1,4 +1,4 @@
-# KataFizzbuzz
+# Kata Pizza Maker!
 
 ![travis-ci](https://travis-ci.com/WESquad-spires/kata-fizzbuzz.svg?branch=master)
 
