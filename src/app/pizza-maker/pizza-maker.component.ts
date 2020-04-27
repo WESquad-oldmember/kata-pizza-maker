@@ -1,3 +1,4 @@
+import { PizzaSize } from './../models/pizza-sizes.enum';
 import { Component, OnInit } from '@angular/core';
 import { Pizza } from '../models/pizza.model';
 
@@ -9,15 +10,14 @@ import { Pizza } from '../models/pizza.model';
 export class PizzaMakerComponent implements OnInit {
 
   pizza: Pizza;
-  pizzaSizes = ['small', 'medium', 'large'];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  makePizza(name: string, pasta: string, toppings: string[]): any {
-    if (!pasta || !pasta.trim() || !this.pizzaSizes.includes(pasta)) {
+  makePizza(name: string, pasta: PizzaSize, toppings: string[]): any {
+    if (!pasta) {
       return;
     }
 

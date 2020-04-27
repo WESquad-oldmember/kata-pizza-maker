@@ -1,3 +1,4 @@
+import { PizzaSize } from './../models/pizza-sizes.enum';
 import { TestBed } from '@angular/core/testing';
 import { PizzaMakerComponent } from './pizza-maker.component';
 
@@ -19,7 +20,7 @@ describe('PizzaMakerComponent', () => {
     describe('GIVEN all necessary ingredients THEN a pizza is created', () => {
       describe('GIVEN a set of toppings for mexican pizza THEN a mexican pizza should be created', () => {
         const name = 'Mexican Pizza';
-        const smallPasta = 'small';
+        const smallPasta = PizzaSize.SMALL;
         const mexicanToppings = ['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce'];
 
         Given(() => {
@@ -28,14 +29,14 @@ describe('PizzaMakerComponent', () => {
 
         Then(() => {
           expect(actualResult.name).toBe('Mexican Pizza');
-          expect(actualResult.pasta).toBe('small');
+          expect(actualResult.pasta).toBe(PizzaSize.SMALL);
           expect(actualResult.toppings).toEqual(['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce']);
         });
       });
 
       describe('GIVEN  a set of 4 seasons ingredients THEN a 4 seasons pizza should be created', () => {
         const name = '4 Seasons Pizza';
-        const smallPasta = 'small';
+        const smallPasta = PizzaSize.SMALL;
         const fourSeasonToppings = ['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique'];
 
         Given(() => {
@@ -44,7 +45,7 @@ describe('PizzaMakerComponent', () => {
         Then(() => {
           // it should make a 4 seasons pizza
           expect(actualResult.name).toBe('4 Seasons Pizza');
-          expect(actualResult.pasta).toBe('small');
+          expect(actualResult.pasta).toBe(PizzaSize.SMALL);
           expect(actualResult.toppings).toEqual(['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique']);
         });
       });
@@ -52,7 +53,7 @@ describe('PizzaMakerComponent', () => {
 
     describe('GIVEN toppings are missing THEN no pizza is created', () => {
       const name = 'fake name';
-      const pasta = 'some size';
+      const pasta = PizzaSize.MEDIUM;
       const toppings = [];
 
       Given(() => {
@@ -66,7 +67,7 @@ describe('PizzaMakerComponent', () => {
 
     describe('GIVEN pasta is missing THEN no pizza is created', () => {
       const name = 'fake name';
-      let pasta = '';
+      let pasta = null;
       const toppings = ['some', 'fake', 'toppings'];
 
       describe('GIVEN pasta is null/empty THEN no pizza for you', () => {
