@@ -11,6 +11,8 @@ describe('PizzaMakerComponent', () => {
       providers: [PizzaMakerComponent]
     });
     componentUnderTest = TestBed.get(PizzaMakerComponent);
+
+    actualResult = undefined;
   });
 
   describe('METHOD: makePizza', () => {
@@ -46,6 +48,20 @@ describe('PizzaMakerComponent', () => {
           expect(actualResult.pasta).toBe('small');
           expect(actualResult.toppings).toEqual(['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique']);
         });
+      });
+    });
+
+    describe('GIVEN toppings are missing THEN no pizza is created', () => {
+      const name = 'fake name';
+      const pasta = 'some size';
+      const toppings = [];
+
+      Given(() => {
+        actualResult = componentUnderTest.makePizza(name, pasta, toppings);
+      });
+
+      Then(() => {
+        expect(actualResult).toBeFalsy();
       });
     });
   });
