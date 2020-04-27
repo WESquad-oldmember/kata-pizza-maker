@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaMakerComponent implements OnInit {
 
+  pizza: any;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  makePizza(name: string, pasta: string, toppings: string[]): any {
+    this.pizza = { name, pasta, toppings };
+
+    return this.pizza;
+  }
 }
