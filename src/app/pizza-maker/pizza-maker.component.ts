@@ -9,6 +9,7 @@ import { Pizza } from '../models/pizza.model';
 export class PizzaMakerComponent implements OnInit {
 
   pizza: Pizza;
+  pizzaSizes = ['small', 'medium', 'large'];
 
   constructor() { }
 
@@ -16,7 +17,11 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   makePizza(name: string, pasta: string, toppings: string[]): any {
-    if (toppings.length > 0 && pasta && pasta.trim()) {
+    if (!pasta || !pasta.trim() || !this.pizzaSizes.includes(pasta)) {
+      return;
+    }
+
+    if (toppings.length > 0) {
       this.pizza = { name, pasta, toppings };
     }
 
