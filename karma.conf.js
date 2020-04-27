@@ -3,30 +3,64 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
+      require('karma-jasmine-given'),
+      require('karma-firefox-launcher'),
+      // require('karma-chrome-launcher'),
+      require('karma-mocha-reporter'),
+      require('karma-jasmine-diff-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    client: {
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
-    },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/kata-fizzbuzz'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
-    },
-    reporters: ['progress', 'kjhtml'],
+
+    // TRIGGER
+    autoWatch: true,
+    singleRun: false,
+    restartOnFileChange: true,
+
+    // BUILD
+    frameworks: ['jasmine-given', 'jasmine', '@angular-devkit/build-angular'],
+    basePath: '',
+    // angularCli: {
+    //   environment: 'dev'
+    // },
+
+    // RUN
     port: 9876,
+    // browsers: ['ChromeHeadless'],
+    browsers: ['FirefoxHeadless'],
+    customLaunchers: {
+      FirefoxHeadless: {
+        base: 'Firefox',
+        flags: ['-headless'],
+      },
+    },
+
+    // REPORT
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+
+    reporters: ['jasmine-diff', 'mocha'],
+
+    jasmineDiffReporter: {
+      color: {
+        expectedBg: 'bgMagenta',
+        expectedWhitespaceBg: 'bgMagenta',
+        actualBg: 'bgBlue',
+        actualWhitespaceBg: 'bgBlue'
+      }
+    },
+
+    mochaReporter: {
+      output: 'minimal'
+    },
+
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, './coverage/lso-cockpit'),
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true
+    }
   });
 };
