@@ -30,12 +30,21 @@ describe('PizzaMakerComponent', () => {
           expect(actualResult.pasta).toBe('small');
           expect(actualResult.toppings).toEqual(['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce']);
         });
-        });
+      });
 
+      describe('GIVEN  a set of 4 seasons ingredients THEN a 4 seasons pizza should be created', () => {
+        const name = '4 Seasons Pizza';
+        const smallPasta = 'small';
+        const fourSeasonToppings = ['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique'];
+
+        Given(() => {
+          actualResult = componentUnderTest.makePizza(name, smallPasta, fourSeasonToppings);
+        });
         Then(() => {
-          expect(actualResult.name).toBe(name);
-          expect(actualResult.pasta).toBe(pasta);
-          expect(actualResult.toppings).toBe(toppings);
+          // it should make a 4 seasons pizza
+          expect(actualResult.name).toBe('4 Seasons Pizza');
+          expect(actualResult.pasta).toBe('small');
+          expect(actualResult.toppings).toEqual(['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique']);
         });
       });
     });
