@@ -82,6 +82,18 @@ describe('PizzaMakerComponent', () => {
         });
       });
 
+      describe('GIVEN pasta is of unknown size THEN no pizza for you', () => {
+        When(() => {
+          pasta = 'some fake size';
+        });
+
+        Given(() => {
+          actualResult = componentUnderTest.makePizza(name, pasta, toppings);
+        });
+        Then(() => {
+          expect(actualResult).toBeFalsy();
+        });
+      });
     });
   });
 });
