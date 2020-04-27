@@ -3,5 +3,5 @@ node_js:
 - lts/*
 
 script:
-  - ng lint
-  - ng test --watch=false --browsers ChromeHeadless
+  - npm run lint
+  - ng test --watch=false
