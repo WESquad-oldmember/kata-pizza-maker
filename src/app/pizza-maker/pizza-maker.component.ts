@@ -42,6 +42,11 @@ export class PizzaMakerComponent implements OnInit {
     return this.order;
   }
 
+  getEstimatedTime(fakeOrder: Order): string {
+    throw new Error('Method not implemented yet');
+  }
+
+
   private isValidPizzaName(pizzaName: PizzaType) {
     return pizzaName == null || !(Object.values(PizzaType).includes(pizzaName));
   }

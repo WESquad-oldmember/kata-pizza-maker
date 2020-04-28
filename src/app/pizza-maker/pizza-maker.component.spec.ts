@@ -127,4 +127,28 @@ describe('PizzaMakerComponent', () => {
       });
     });
   });
+
+  describe('METHOD: getEstimatedTime', () => {
+    describe('GIVEN an order is being made THEN get the estimated time for readyness', () => {
+      const expectedTime = 'Between 13:45 and 18:45';
+
+      Given(() => {
+        fakeOrder = {
+          pizza: {
+            name: PizzaType.Mexican,
+            size: PizzaSize.MEDIUM,
+            toppings: []
+          }
+        };
+      });
+
+      When(() => {
+        actualResult = componentUnderTest.getEstimatedTime(fakeOrder);
+      });
+
+      Then(() => {
+        expect(actualResult).toEqual(expectedTime);
+      });
+    });
+  });
 });
