@@ -1,5 +1,5 @@
-import { Order } from './../models/order.model';
 import { TestBed } from '@angular/core/testing';
+import { Order } from './../models/order.model';
 import { PizzaSize } from './../models/pizza-sizes.enum';
 import { Pizza } from './../models/pizza.model';
 import { PizzaMakerComponent } from './pizza-maker.component';
@@ -23,7 +23,7 @@ describe('PizzaMakerComponent', () => {
     name = undefined;
     size = undefined;
     toppings = undefined;
-    fakeOrder = undefined;
+    fakeOrder = new Order();
     fakePizza = undefined;
   });
 
@@ -91,14 +91,20 @@ describe('PizzaMakerComponent', () => {
 
   describe('METHOD: makePizza', () => {
     When(() => {
-      actualResult = componentUnderTest.makePizza(fakePizza);
+      actualResult = componentUnderTest.makePizza(fakeOrder.pizza);
     });
 
     describe('GIVEN order has been validated THEN make the pizza', () => {
       Given(() => {
+        fakeOrder.pizza = {
+          name: 'Fake Pizza',
+          size: PizzaSize.MEDIUM,
+          toppings: []
+        };
         fakeOrder.isValid = true;
       });
       Then(() => {
+        expect(actualResult).toBeTruthy();
         expect(actualResult.isBeingMade).toBeTruthy();
       });
     });
