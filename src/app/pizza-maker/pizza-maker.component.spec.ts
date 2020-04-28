@@ -72,12 +72,12 @@ describe('PizzaMakerComponent', () => {
       });
     });
 
-    describe('GIVEN a pizza name, size and toppings THEN the order is validated', () => {
+    describe('GIVEN a pizza name, size THEN the order is validated', () => {
       Given(() => {
         fakePizza = {
           name: 'fake name',
           size: PizzaSize.MEDIUM,
-          toppings: ['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce']
+          toppings: []
         };
       });
       Then(() => {
