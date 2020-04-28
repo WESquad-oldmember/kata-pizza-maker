@@ -1,3 +1,4 @@
+import { Order } from './../models/order.model';
 import { Component, OnInit } from '@angular/core';
 import { Pizza } from '../models/pizza.model';
 import { PizzaSize } from './../models/pizza-sizes.enum';
@@ -9,19 +10,23 @@ import { PizzaSize } from './../models/pizza-sizes.enum';
 })
 export class PizzaMakerComponent implements OnInit {
 
-  pizza: Pizza;
+  order: Order;
 
-  constructor() { }
+  constructor() {
+    this.order = new Order();
+  }
 
   ngOnInit() {
   }
 
   validateOrder(pizza: Pizza): boolean {
     if (!pizza.name || pizza.size == null || !(pizza.size in PizzaSize)) {
-      return false;
+      this.order.isValid = false;
+    } else {
+      this.order.isValid = true;
     }
 
-    return true;
+    return this.order.isValid;
   }
 
   makePizza(name: string, size: PizzaSize, toppings: string[]): any {
