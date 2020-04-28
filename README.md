@@ -53,8 +53,8 @@ When an order is being validated by the ordering manager, the factory will start
 ### **Requirements**
 
 It is required to:
-- make pizzas when an order is validated
 - validate orders
+- make pizzas when an order is validated
 - show estimated time for readyness
 - show progress of pizza making
 
