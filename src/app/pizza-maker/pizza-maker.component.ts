@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pizza } from '../models/pizza.model';
 import { Order } from './../models/order.model';
-import { PizzaSize } from './../models/pizza-sizes.enum';
+import { PizzaSize } from '../models/pizza-size.enum';
 
 @Component({
   selector: 'app-pizza-maker',

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Order } from './../models/order.model';
-import { PizzaSize } from './../models/pizza-sizes.enum';
+import { PizzaSize } from '../models/pizza-size.enum';
 import { Pizza } from './../models/pizza.model';
 import { PizzaMakerComponent } from './pizza-maker.component';
 

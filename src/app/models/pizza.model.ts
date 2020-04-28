@@ -1,4 +1,4 @@
-import { PizzaSize } from './pizza-sizes.enum';
+import { PizzaSize } from './pizza-size.enum';
 export class Pizza {
     name: string;
     size: PizzaSize;
