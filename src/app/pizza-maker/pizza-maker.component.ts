@@ -16,14 +16,21 @@ export class PizzaMakerComponent implements OnInit {
   ngOnInit() {
   }
 
-  makePizza(name: string, pizzaSize: PizzaSize, toppings: string[]): any {
-    if (pizzaSize == null || !(pizzaSize in PizzaSize)) {
-      return;
+  validateOrder(pizza: Pizza): boolean {
+    if (pizza.size == null || !(pizza.size in PizzaSize)) {
+      return false;
     }
 
-    if (toppings.length > 0) {
-      this.pizza = { name, pizzaSize, toppings };
+    if (pizza.toppings.length < 1) {
+      return false;
     }
+
+    return true;
+  }
+
+  makePizza(name: string, size: PizzaSize, toppings: string[]): any {
+
+    this.pizza = { name, size, toppings };
 
     return this.pizza;
   }
