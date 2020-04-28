@@ -29,12 +29,12 @@ describe('PizzaMakerComponent', () => {
       actualResult = componentUnderTest.validateOrder(fakePizza);
     });
 
-    describe('GIVEN toppings are missing THEN the order is not validated', () => {
+    describe('GIVEN pizza name is missing THEN the order is not validated', () => {
       Given(() => {
         fakePizza = {
-          name: 'fake name',
+          name: '',
           size: PizzaSize.MEDIUM,
-          toppings: []
+          toppings: ['some', 'fake', 'toppings']
         };
       });
 

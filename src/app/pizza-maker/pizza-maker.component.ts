@@ -17,11 +17,7 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   validateOrder(pizza: Pizza): boolean {
-    if (pizza.size == null || !(pizza.size in PizzaSize)) {
-      return false;
-    }
-
-    if (pizza.toppings.length < 1) {
+    if (!pizza.name || pizza.size == null || !(pizza.size in PizzaSize)) {
       return false;
     }
 
