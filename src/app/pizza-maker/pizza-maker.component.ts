@@ -43,7 +43,16 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   getEstimatedTime(fakeOrder: Order): string {
-    throw new Error('Method not implemented yet');
+    const prepareTime = 3;
+    const sauceTime = .5;
+    const bakeMinTime = 10;
+    const bakeMaxTime = 15;
+    const packagingTime = .25;
+
+    const estimatedTime = prepareTime + sauceTime + packagingTime;
+
+    return `Between ${Math.trunc(estimatedTime + bakeMinTime)}:${((estimatedTime + bakeMinTime) % 1) * 60}`
+      + ` and ${Math.trunc(estimatedTime + bakeMaxTime)}:${((estimatedTime + bakeMaxTime) % 1) * 60}`;
   }
 
 
