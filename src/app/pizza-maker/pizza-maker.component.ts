@@ -1,6 +1,6 @@
-import { Order } from './../models/order.model';
 import { Component, OnInit } from '@angular/core';
 import { Pizza } from '../models/pizza.model';
+import { Order } from './../models/order.model';
 import { PizzaSize } from './../models/pizza-sizes.enum';
 
 @Component({
@@ -24,6 +24,7 @@ export class PizzaMakerComponent implements OnInit {
       this.order.isValid = false;
     } else {
       this.order.isValid = true;
+      this.makePizza(pizza);
     }
 
     return this.order;
