@@ -42,7 +42,7 @@ describe('PizzaMakerComponent', () => {
       });
 
       Then(() => {
-        expect(actualResult).toBeFalsy();
+        expect(actualResult.isValid).toBe(false);
       });
     });
 
@@ -57,7 +57,7 @@ describe('PizzaMakerComponent', () => {
         });
 
         Then(() => {
-          expect(actualResult).toBeFalsy();
+          expect(actualResult.isValid).toBe(false);
         });
       });
 
@@ -70,7 +70,7 @@ describe('PizzaMakerComponent', () => {
           };
         });
         Then(() => {
-          expect(actualResult).toBeFalsy();
+          expect(actualResult.isValid).toBe(false);
         });
       });
     });
@@ -84,7 +84,7 @@ describe('PizzaMakerComponent', () => {
         };
       });
       Then(() => {
-        expect(actualResult).toBeTruthy();
+        expect(actualResult.isValid).toBe(true);
       });
     });
   });

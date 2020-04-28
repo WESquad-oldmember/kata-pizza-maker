@@ -19,14 +19,14 @@ export class PizzaMakerComponent implements OnInit {
   ngOnInit() {
   }
 
-  validateOrder(pizza: Pizza): boolean {
+  validateOrder(pizza: Pizza): Order {
     if (!pizza.name || pizza.size == null || !(pizza.size in PizzaSize)) {
       this.order.isValid = false;
     } else {
       this.order.isValid = true;
     }
 
-    return this.order.isValid;
+    return this.order;
   }
 
   makePizza(pizza: Pizza): Order {
