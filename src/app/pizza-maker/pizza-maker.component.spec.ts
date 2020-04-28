@@ -98,23 +98,24 @@ describe('PizzaMakerComponent', () => {
       };
       actualResult = componentUnderTest.makePizza(fakeOrder.pizza);
     });
+    Then(() => {
+      expect(actualResult).toBeTruthy();
+    });
 
     describe('GIVEN order has been validated THEN make the pizza', () => {
       Given(() => {
-        fakeOrder.isValid = true;
+        componentUnderTest.order.isValid = true;
       });
       Then(() => {
-        expect(actualResult).toBeTruthy();
         expect(actualResult.isBeingMade).toBeTruthy();
       });
     });
 
     describe('GIVEN order is not valid THEN do not make the pizza', () => {
       Given(() => {
-        fakeOrder.isValid = false;
+        componentUnderTest.order.isValid = false;
       });
       Then(() => {
-        expect(actualResult).toBeTruthy();
         expect(actualResult.isBeingMade).toBeFalsy();
       });
     });
