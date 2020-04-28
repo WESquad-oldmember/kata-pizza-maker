@@ -1,7 +1,7 @@
 export enum PizzaType {
-    IndiTandoori,
-    FourCheeses,
-    Peperoni,
-    Mexican,
-    Vegetarian
+    IndiTandoori = 'Indi tandoori',
+    FourCheeses = '4 cheeses',
+    Pepperoni = 'Pepperoni',
+    Mexican = 'Mexican',
+    Vegetarian = 'Vegetarian'
 }

@@ -1,7 +1,7 @@
-import { PizzaType } from './../models/pizza-type.enum';
 import { TestBed } from '@angular/core/testing';
-import { Order } from './../models/order.model';
 import { PizzaSize } from '../models/pizza-size.enum';
+import { Order } from './../models/order.model';
+import { PizzaType } from './../models/pizza-type.enum';
 import { Pizza } from './../models/pizza.model';
 import { PizzaMakerComponent } from './pizza-maker.component';
 
@@ -57,19 +57,6 @@ describe('PizzaMakerComponent', () => {
           };
         });
 
-        Then(() => {
-          expect(actualResult.isValid).toBe(false);
-        });
-      });
-
-      describe('Pizza size is not known', () => {
-        Given(() => {
-          fakePizza = {
-            name: PizzaType.Mexican,
-            size: -999,
-            toppings: ['some', 'fake', 'toppings']
-          };
-        });
         Then(() => {
           expect(actualResult.isValid).toBe(false);
         });

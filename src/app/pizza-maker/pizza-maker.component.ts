@@ -21,7 +21,9 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   validateOrder(pizza: Pizza): Order {
-    if (pizza.name == null || !(pizza.name in PizzaType) || pizza.size == null || !(pizza.size in PizzaSize)) {
+
+    if (pizza.name == null || !(Object.values(PizzaType).includes(pizza.name))
+      || pizza.size == null || !(Object.values(PizzaSize).includes(pizza.size))) {
       this.order.isValid = false;
     } else {
       this.order.isValid = true;
