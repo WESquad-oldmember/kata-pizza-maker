@@ -91,21 +91,31 @@ describe('PizzaMakerComponent', () => {
 
   describe('METHOD: makePizza', () => {
     When(() => {
+      fakeOrder.pizza = {
+        name: 'Fake Pizza',
+        size: PizzaSize.MEDIUM,
+        toppings: []
+      };
       actualResult = componentUnderTest.makePizza(fakeOrder.pizza);
     });
 
     describe('GIVEN order has been validated THEN make the pizza', () => {
       Given(() => {
-        fakeOrder.pizza = {
-          name: 'Fake Pizza',
-          size: PizzaSize.MEDIUM,
-          toppings: []
-        };
         fakeOrder.isValid = true;
       });
       Then(() => {
         expect(actualResult).toBeTruthy();
         expect(actualResult.isBeingMade).toBeTruthy();
+      });
+    });
+
+    describe('GIVEN order is not valid THEN do not make the pizza', () => {
+      Given(() => {
+        fakeOrder.isValid = false;
+      });
+      Then(() => {
+        expect(actualResult).toBeTruthy();
+        expect(actualResult.isBeingMade).toBeFalsy();
       });
     });
   });
