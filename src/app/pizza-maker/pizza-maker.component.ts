@@ -30,8 +30,12 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   makePizza(pizza: Pizza): Order {
-    this.order.pizza = pizza;
-    this.order.isBeingMade = true;
+    if (this.order.isValid) {
+      this.order.pizza = pizza;
+      this.order.isBeingMade = true;
+    } else {
+      this.order.isBeingMade = false;
+    }
 
     return this.order;
   }
