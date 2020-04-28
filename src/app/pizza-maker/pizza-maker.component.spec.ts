@@ -1,3 +1,4 @@
+import { Order } from './../models/order.model';
 import { TestBed } from '@angular/core/testing';
 import { PizzaSize } from './../models/pizza-sizes.enum';
 import { Pizza } from './../models/pizza.model';
@@ -6,6 +7,7 @@ import { PizzaMakerComponent } from './pizza-maker.component';
 describe('PizzaMakerComponent', () => {
   let componentUnderTest: PizzaMakerComponent;
   let actualResult: any;
+  let fakeOrder: Order;
   let fakePizza: Pizza;
   let name: string;
   let size: PizzaSize;
@@ -21,6 +23,7 @@ describe('PizzaMakerComponent', () => {
     name = undefined;
     size = undefined;
     toppings = undefined;
+    fakeOrder = undefined;
     fakePizza = undefined;
   });
 
@@ -88,39 +91,16 @@ describe('PizzaMakerComponent', () => {
 
   describe('METHOD: makePizza', () => {
     When(() => {
-      actualResult = componentUnderTest.makePizza(name, size, toppings);
+      actualResult = componentUnderTest.makePizza(fakePizza);
     });
 
-    describe('GIVEN all necessary ingredients THEN a pizza is created', () => {
-      describe('GIVEN a set of toppings for mexican pizza THEN a mexican pizza should be created', () => {
-        Given(() => {
-          name = 'Mexican Pizza';
-          size = PizzaSize.SMALL;
-          toppings = ['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce'];
-        });
-
-        Then(() => {
-          expect(actualResult.name).toBe('Mexican Pizza');
-          expect(actualResult.size).toBe(PizzaSize.SMALL);
-          expect(actualResult.toppings).toEqual(['tomato sauce', 'meat', 'pepperoni', 'pineapple', 'pepper', 'cheddar', 'hot sauce']);
-        });
+    describe('GIVEN order has been validated THEN make the pizza', () => {
+      Given(() => {
+        fakeOrder.isValid = true;
       });
-
-      describe('GIVEN  a set of 4 seasons ingredients THEN a 4 seasons pizza should be created', () => {
-        Given(() => {
-          name = '4 Seasons Pizza';
-          size = PizzaSize.SMALL;
-          toppings = ['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique'];
-        });
-        Then(() => {
-          // it should make a 4 seasons pizza
-          expect(actualResult.name).toBe('4 Seasons Pizza');
-          expect(actualResult.size).toBe(PizzaSize.SMALL);
-          expect(actualResult.toppings).toEqual(['pâte', 'sauce', 'oeuf', 'épinard', 'poivron', 'fromage cheddar', 'vinaigre balsamique']);
-        });
+      Then(() => {
+        expect(actualResult.isBeingMade).toBeTruthy();
       });
     });
-
-
   });
 });
