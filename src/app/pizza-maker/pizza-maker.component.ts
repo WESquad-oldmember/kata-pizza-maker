@@ -29,10 +29,10 @@ export class PizzaMakerComponent implements OnInit {
     return this.order.isValid;
   }
 
-  makePizza(name: string, size: PizzaSize, toppings: string[]): any {
+  makePizza(pizza: Pizza): Order {
+    this.order.pizza = pizza;
+    this.order.isBeingMade = true;
 
-    this.pizza = { name, size, toppings };
-
-    return this.pizza;
+    return this.order;
   }
 }
