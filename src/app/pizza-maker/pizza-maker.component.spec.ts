@@ -1,3 +1,4 @@
+import { PizzaType } from './../models/pizza-type.enum';
 import { TestBed } from '@angular/core/testing';
 import { Order } from './../models/order.model';
 import { PizzaSize } from '../models/pizza-size.enum';
@@ -35,7 +36,7 @@ describe('PizzaMakerComponent', () => {
     describe('GIVEN pizza name is missing THEN the order is not validated', () => {
       Given(() => {
         fakePizza = {
-          name: '',
+          name: null,
           size: PizzaSize.MEDIUM,
           toppings: ['some', 'fake', 'toppings']
         };
@@ -50,7 +51,7 @@ describe('PizzaMakerComponent', () => {
       describe('Pizza size is null', () => {
         Given(() => {
           fakePizza = {
-            name: 'fake name',
+            name: PizzaType.Vegetarian,
             size: null,
             toppings: ['some', 'fake', 'toppings']
           };
@@ -64,7 +65,7 @@ describe('PizzaMakerComponent', () => {
       describe('Pizza size is not known', () => {
         Given(() => {
           fakePizza = {
-            name: 'fake name',
+            name: PizzaType.Mexican,
             size: -999,
             toppings: ['some', 'fake', 'toppings']
           };
@@ -75,10 +76,10 @@ describe('PizzaMakerComponent', () => {
       });
     });
 
-    describe('GIVEN a pizza name and size THEN the order is validated', () => {
+    describe('GIVEN a known pizza name and size THEN the order is validated', () => {
       Given(() => {
         fakePizza = {
-          name: 'Fake name',
+          name: PizzaType.IndiTandoori,
           size: PizzaSize.MEDIUM,
           toppings: []
         };
@@ -92,7 +93,7 @@ describe('PizzaMakerComponent', () => {
   describe('METHOD: makePizza', () => {
     When(() => {
       fakeOrder.pizza = {
-        name: 'Fake Pizza',
+        name: PizzaType.FourCheeses,
         size: PizzaSize.MEDIUM,
         toppings: []
       };
@@ -126,7 +127,7 @@ describe('PizzaMakerComponent', () => {
       Given(() => {
         fakeOrder = {
           pizza: {
-            name: 'Fake pizza',
+            name: PizzaType.FourCheeses,
             size: PizzaSize.LARGE,
             toppings: ['some topping']
           }

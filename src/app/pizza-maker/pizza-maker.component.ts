@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PizzaSize } from '../models/pizza-size.enum';
 import { Pizza } from '../models/pizza.model';
 import { Order } from './../models/order.model';
-import { PizzaSize } from '../models/pizza-size.enum';
+import { PizzaType } from './../models/pizza-type.enum';
 
 @Component({
   selector: 'app-pizza-maker',
@@ -20,7 +21,7 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   validateOrder(pizza: Pizza): Order {
-    if (!pizza.name || pizza.size == null || !(pizza.size in PizzaSize)) {
+    if (pizza.name == null || !(pizza.name in PizzaType) || pizza.size == null || !(pizza.size in PizzaSize)) {
       this.order.isValid = false;
     } else {
       this.order.isValid = true;
