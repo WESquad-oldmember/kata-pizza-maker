@@ -120,4 +120,23 @@ describe('PizzaMakerComponent', () => {
       });
     });
   });
+
+  describe('EVENT: Order validated > make pizza', () => {
+    describe('GIVEN an order is validated THEN make a pizza with this order', () => {
+      Given(() => {
+        fakeOrder = {
+          pizza: {
+            name: 'Fake pizza',
+            size: PizzaSize.LARGE,
+            toppings: ['some topping']
+          }
+        };
+        actualResult = componentUnderTest.validateOrder(fakeOrder.pizza);
+      });
+
+      Then(() => {
+        expect(actualResult.isBeingMade).toBe(true);
+      });
+    });
+  });
 });
