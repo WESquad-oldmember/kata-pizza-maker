@@ -58,7 +58,7 @@ describe('PizzaMakerComponent', () => {
         });
       });
 
-      describe('GIVEN pizza size is not known size THEN the order is not validated', () => {
+      describe('Pizza size is not known', () => {
         Given(() => {
           fakePizza = {
             name: 'fake name',
@@ -72,10 +72,10 @@ describe('PizzaMakerComponent', () => {
       });
     });
 
-    describe('GIVEN a pizza name, size THEN the order is validated', () => {
+    describe('GIVEN a pizza name and size THEN the order is validated', () => {
       Given(() => {
         fakePizza = {
-          name: 'fake name',
+          name: 'Fake name',
           size: PizzaSize.MEDIUM,
           toppings: []
         };
