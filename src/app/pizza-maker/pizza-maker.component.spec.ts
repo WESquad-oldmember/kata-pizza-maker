@@ -151,13 +151,25 @@ describe('PizzaMakerComponent', () => {
       });
     });
 
-    // TODO : write test
-    xdescribe('GIVEN an order is being made THEN get the estimated time for readyness', () => {
+    describe('GIVEN an order with toppings is being made THEN get the estimated time for readyness', () => {
+      const expectedTime = 'Between 14:15 and 19:15';
+
       Given(() => {
-        // an order is being made
+        fakeOrder = {
+          pizza: {
+            name: PizzaType.Mexican,
+            size: PizzaSize.MEDIUM,
+            toppings: ['Mozzarella', 'Tomatoes', 'Basil']
+          }
+        };
       });
+
+      When(() => {
+        actualResult = componentUnderTest.getEstimatedTime(fakeOrder);
+      });
+
       Then(() => {
-        // get the estimated time for readyness
+        expect(actualResult).toEqual(expectedTime);
       });
     });
   });
