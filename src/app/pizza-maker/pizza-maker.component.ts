@@ -10,6 +10,12 @@ import { PizzaType } from './../models/pizza-type.enum';
   styleUrls: ['./pizza-maker.component.scss']
 })
 export class PizzaMakerComponent implements OnInit {
+  readonly prepareDuration = 3;
+  readonly sauceDuration = .5;
+  readonly bakeMinDuration = 10;
+  readonly bakeMaxDuration = 15;
+  readonly packagingDuration = .25;
+  readonly toppingsDuration = .5;
 
   order: Order;
 
@@ -21,10 +27,9 @@ export class PizzaMakerComponent implements OnInit {
   }
 
   validateOrder(pizza: Pizza): Order {
-    if (this.isValidPizzaName(pizza.name) || this.isValidPizzaSize(pizza.size)) {
-      this.order.isValid = false;
-    } else {
-      this.order.isValid = true;
+    this.order.isValid = this.isValidPizzaName(pizza.name) && this.isValidPizzaSize(pizza.size);
+
+    if (this.order.isValid) {
       this.makePizza(pizza);
     }
 
@@ -34,38 +39,32 @@ export class PizzaMakerComponent implements OnInit {
   makePizza(pizza: Pizza): Order {
     if (this.order.isValid) {
       this.order.pizza = pizza;
-      this.order.isBeingMade = true;
-    } else {
-      this.order.isBeingMade = false;
     }
+
+    this.order.isBeingMade = this.order.isValid;
 
     return this.order;
   }
 
   getEstimatedTime(fakeOrder: Order): string {
-    const prepareTime = 3;
-    const sauceTime = .5;
-    const bakeMinTime = 10;
-    const bakeMaxTime = 15;
-    const packagingTime = .25;
-    const toppingsTime = .5;
-
-    let estimatedTime = prepareTime + sauceTime + packagingTime;
+    let estimatedTime = this.prepareDuration + this.sauceDuration + this.packagingDuration;
 
     if (fakeOrder.pizza.toppings && fakeOrder.pizza.toppings.length > 0) {
-      estimatedTime += toppingsTime;
+      estimatedTime += this.toppingsDuration;
     }
 
-    return `Between ${Math.trunc(estimatedTime + bakeMinTime)}:${((estimatedTime + bakeMinTime) % 1) * 60}`
-      + ` and ${Math.trunc(estimatedTime + bakeMaxTime)}:${((estimatedTime + bakeMaxTime) % 1) * 60}`;
+    return `Your order will be ready in about `
+      + `${Math.trunc(estimatedTime + this.bakeMinDuration)}:${((estimatedTime + this.bakeMinDuration) % 1) * 60}`
+      + ` to ${Math.trunc(estimatedTime + this.bakeMaxDuration)}:${((estimatedTime + this.bakeMaxDuration) % 1) * 60}`
+      + ` minutes`;
   }
 
 
   private isValidPizzaName(pizzaName: PizzaType) {
-    return pizzaName == null || !(Object.values(PizzaType).includes(pizzaName));
+    return pizzaName != null && (Object.values(PizzaType).includes(pizzaName));
   }
 
   private isValidPizzaSize(pizzaSize: PizzaSize) {
-    return pizzaSize == null || !(Object.values(PizzaSize).includes(pizzaSize));
+    return pizzaSize != null && (Object.values(PizzaSize).includes(pizzaSize));
   }
 }

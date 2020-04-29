@@ -130,7 +130,7 @@ describe('PizzaMakerComponent', () => {
 
   describe('METHOD: getEstimatedTime', () => {
     describe('GIVEN an order is being made THEN get the estimated time for readyness', () => {
-      const expectedTime = 'Between 13:45 and 18:45';
+      const expectedTime = 'Your order will be ready in about 13:45 to 18:45 minutes';
 
       Given(() => {
         fakeOrder = {
@@ -152,7 +152,7 @@ describe('PizzaMakerComponent', () => {
     });
 
     describe('GIVEN an order with toppings is being made THEN get the estimated time for readyness', () => {
-      const expectedTime = 'Between 14:15 and 19:15';
+      const expectedTime = 'Your order will be ready in about 14:15 to 19:15 minutes';
 
       Given(() => {
         fakeOrder = {
